@@ -1,7 +1,7 @@
 ## Deploying Laravel
-Run composer install to install laravel dependencies
+Run composer install to install laravel dependencies and create your .env file
 ```
-php artisan passport:install
+composer install
 ```
 
 Run the migrations to create the database tables
