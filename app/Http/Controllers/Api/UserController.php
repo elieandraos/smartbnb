@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Smartbnb\ApiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
 	public function index(Request $request)
 	{
 		$user = $request->user();
-		return $user;
+		return $this->apiResponse->respondOk(new UserResource($user)); 
 	}
 
 	/**
@@ -48,6 +49,7 @@ class UserController extends Controller
     		return $this->apiResponse->respondBadRequest($data = [], $validator->errors());
 
     	$input = $request->all();
+    	$input['password'] = bcrypt($input['password']); 
     	$user->update($input);
     	return $this->apiResponse->respondOk(['user updated successfully.']); 
     }

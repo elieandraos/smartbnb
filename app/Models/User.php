@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Country relation.
+     * 
+     * @return type
+     */
+    public function country()
+    {
+        return $this->belongsTo(\App\Models\Country::class);
+    }
 }
