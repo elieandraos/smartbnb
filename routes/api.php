@@ -23,6 +23,7 @@ Route::namespace('Api')->prefix('v1/')->group(function () {
 	Route::group(['middleware' => 'auth:api'], function(){
 		Route::post('user/info', 'UserController@index');
     	Route::post('user/update', 'UserController@update');
+    	Route::post('user/deposit', 'UserController@deposit');
 	});
 });
 

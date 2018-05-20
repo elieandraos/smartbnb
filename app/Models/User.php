@@ -37,4 +37,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(\App\Models\Country::class);
     }
+
+    /**
+     * Transactions relation.
+     * 
+     * @return type
+     */
+    public function transactions()
+    {
+        return $this->hasMany(\App\Models\Transaction::class);
+    }
 }
