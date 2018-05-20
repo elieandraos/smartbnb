@@ -25,6 +25,8 @@ Route::namespace('Api')->prefix('v1/')->group(function () {
     	Route::post('user/update', 'UserController@update');
     	Route::post('user/deposit', 'UserController@deposit');
     	Route::post('user/withdraw', 'UserController@withdraw');
+
+    	Route::post('transactions/{id}/show', 'TransactionsController@show');
 	});
 });
 
