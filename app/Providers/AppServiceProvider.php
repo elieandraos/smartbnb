@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Validator;
 use App\Models\Transaction;
 use App\Smartbnb\TransactionObserver;
+use App\Smartbnb\AmountLimitValidator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +17,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // transaction model observer
         Transaction::observe(TransactionObserver::class);
+        
+        // custom validator for user amount
+        Validator::resolver(function($translator, $data, $rules, $messages)
+        {
+            return new AmountLimitValidator($translator, $data, $rules, $messages);
+        });
+
     }
 
     /**

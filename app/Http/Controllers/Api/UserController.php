@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Smartbnb\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Smartbnb\AmountLimitValidationRule;
 
 class UserController extends Controller
 {
@@ -95,7 +96,7 @@ class UserController extends Controller
     {
     	$user = $request->user();
     	$validator = Validator::make($request->all(), [ 
-        	'amount' 	 => 'required|numeric|min:100',
+        	'amount' 	=> 'required|numeric|min:100|amountLimit',
         ]);
 
         // return validation errors if any
