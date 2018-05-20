@@ -15,6 +15,18 @@ class UserController extends Controller
 	}
 
 	/**
+	 * Return the user details
+	 * 
+	 * @param Request $request 
+	 * @return type
+	 */
+	public function index(Request $request)
+	{
+		$user = $request->user();
+		return $user;
+	}
+
+	/**
 	 * Update the user info.
 	 * 
 	 * @param Request $request 
