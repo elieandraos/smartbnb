@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
@@ -51,9 +52,14 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         // Catch expections in api requests  
+        if($exception instanceof NotFoundHttpException)
+        {
+            return response()->json([ 'message' => 'The api call does not exist.' ], 404);
+        }
+
         if($exception instanceof ModelNotFoundException)
         {
-            return response()->json([ 'message' => 'Record not found.' ], 404);
+            return response()->json([ 'message' => 'the model record is not found.' ], 404);
         }
 
         if($exception instanceof MethodNotAllowedHttpException)
@@ -64,6 +70,6 @@ class Handler extends ExceptionHandler
         // any other type of exception
         return response()->json(['message' => 'Woops ! Something went wrong.'], 500);
 
-        //return parent::render($request, $exception);
+        return parent::render($request, $exception);
     }
 }
