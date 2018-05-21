@@ -27,7 +27,7 @@ class TransactionsController extends Controller
 		$user = $request->user();
 
 		$validator = Validator::make($request->all(), [ 
-        	'start_date' 	 => 'date_format:Y-m-d', 
+        	'start_date' 	 => 'date_format:Y-m-d|required_with:end_date', 
         	'end_date' 	 	 => 'date_format:Y-m-d|after_or_equal:start_date', 
         ]);
 
@@ -40,7 +40,7 @@ class TransactionsController extends Controller
 							->beforeDate($request->get('end_date'))
 							->orderBy('created_at', 'DESC')
 							->get();
-							
+
 		return $this->apiResponse->respondOk(TransactionResource::collection($transactions));
 	}
 

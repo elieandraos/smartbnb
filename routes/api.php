@@ -30,5 +30,7 @@ Route::namespace('Api')->prefix('v1/')->group(function () {
     	Route::post('transactions/', 'TransactionsController@index');
     	Route::post('transactions/{id}/show', 'TransactionsController@show');
 	});
+
+	Route::post('reports/dashboard', 'ReportsController@dashboard');
 });
 
