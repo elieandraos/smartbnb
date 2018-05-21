@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $fillable = [ 'deposit', 'amount', 'user_id'];
+    protected $appends = ['type'];
 
     /**
      * User relation.
@@ -44,5 +45,15 @@ class Transaction extends Model
             return $query;
 
         return $query->whereDate('created_at', '<=', $date);
+    }
+
+    /**
+     * Transaction type accessor
+     * 
+     * @return type
+     */
+    public function getTypeAttribute()
+    {
+       return ($this->deposit) ? 'Deposit' : 'Withdraw';
     }
 }

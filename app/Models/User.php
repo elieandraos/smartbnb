@@ -28,6 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['country_name'];
+
     /**
      * Country relation.
      * 
@@ -46,5 +48,15 @@ class User extends Authenticatable
     public function transactions()
     {
         return $this->hasMany(\App\Models\Transaction::class);
+    }
+
+    /**
+     * Country name accessor
+     * 
+     * @return type
+     */
+    public function getCountryNameAttribute()
+    {
+        return $this->country->full_name;
     }
 }

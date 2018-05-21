@@ -17,8 +17,8 @@ class TransactionResource extends Resource
     {
          return [
             'amount'    =>  number_format($this->amount, 2, '.', ','),
-            'type'      =>  ($this->deposit) ? 'deposit' : 'withdraw',
-            'date'      => Carbon::parse($this->created_at)->format('Y-m-d')
+            'type'      =>  $this->type,
+            'date'      =>  Carbon::parse($this->created_at)->format('Y-m-d')
         ];
     }
 }

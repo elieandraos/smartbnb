@@ -32,5 +32,6 @@ Route::namespace('Api')->prefix('v1/')->group(function () {
 	});
 
 	Route::post('reports/dashboard', 'ReportsController@dashboard');
+	Route::post('reports/aggregated', 'ReportsController@aggregated');
 });
 

@@ -19,7 +19,7 @@ class UserResource extends Resource
             'email'             =>  $this->email,
             'amount'            =>  number_format($this->amount, 2, '.', ','),
             'bonuse_percentage' =>  $this->bonus_percent."%",
-            'country'           =>  $this->country->full_name
+            'country'           =>  $this->country_name
         ];
     }
 }
